@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* --bg-color: #262626; */
+  --bg-color: #1E1E20;
+  --text-color: #ffffff;
+  --text-gray: #7F7F7F;
+  --text-black: #262626;
+
+  --border-color: #3D3D3D;
+  font-family:'Courier New', Courier, monospace;
+}
+
+/* bg-gradient-to-b bg-[var(--bg-color)] text-[var(--text-color)] */
+
+body {
+  @apply  bg-gradient-to-bl dark:from-[var(--bg-color)] dark:to-[var(--bg-color)]/95 dark:text-[var(--text-color)] min-h-screen;
+}
+
+/* custom style for link */
+
+.active {
+  @apply  text-[var(--text-color)];
+}
+
+.active:hover {
+  @apply text-[var(--text-color)];
+}
+
+
+.active > .active__navlink {
+  @apply  text-[var(--text-color)];
+}
+  /* 
+.link__style {
+  @apply text-md font-medium  text-[var(--text-color)] hover:not-[.active]:text-gray-400;
+} */
