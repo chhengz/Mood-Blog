@@ -5,6 +5,7 @@ import Blog from "./pages/blog/Blog";
 import AboutPage from "./pages/about/AboutPage";
 import ProtectedRoute from "./components/features/auth/ProtectedRoute";
 import LoginPage from "./components/features/auth/LoginPage";
+import ViewPost from "./pages/blog/ViewPost";
 
 const routers = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const routers = createBrowserRouter([
       // { path: "/", element: <Home /> },
       { path: "/home", element: <Home /> },
       { path: "/blog", element: <ProtectedRoute> <Blog /> </ProtectedRoute> },
+      { path: "/blog/:slug", element:  <ViewPost /> },
       { path: "/about", element: <AboutPage /> },
     ],
   },

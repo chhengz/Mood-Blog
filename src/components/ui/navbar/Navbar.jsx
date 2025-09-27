@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   // const [showLoginForm, setShowLoginForm] = useState(false);
-  const { login, isAuthenticated } = useContext(AppContext);
+  const { isAuthenticated } = useContext(AppContext);
 
   // handle scroll to change header style
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,8 +43,6 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
- 
-
   return (
     // <nav className="hidden xl:block">
     <>
@@ -52,7 +50,7 @@ const Navbar = () => {
         <div
           className={`container mx-auto md:max-w-3/4 lg:max-w-2/4  flex justify-between items-center 
           ${isScrolled
-              ? " p-2 border border-gray-600/50 backdrop-blur-lg rounded-full shadow-md"
+              ? " p-2  border border-gray-600/50 backdrop-blur-lg rounded-full shadow-md"
               : "bg-transparent border-transparent"
             } 
         transition-all duration-300`}
@@ -86,14 +84,10 @@ const Navbar = () => {
           <div>
             {/* ${isScrolled ? '' : 'border border-gray-600 backdrop-blur-lg rounded-full'} */}
             {/* <div className={`p-1 md:pl-4 ${isAuthenticated ? 'md:pr-4' : ''}  `}> */}
-
             <nav
-              className={` flex items-center justify-center ${isAuthenticated ? "hidden md:block" : ""
-                } 
-          ${isScrolled ? "p-0 " : "px-1 md:px-2 py-1 md:py-2 border border-gray-600 backdrop-blur-lg rounded-full" }
-          ${!isAuthenticated ? "md:pl-3" : "md:px-4"}
-           transition-all duration-150 ease-in-out
-          `}
+              className={` flex items-center justify-center ${isAuthenticated ? "hidden md:block" : ""} 
+              ${isScrolled ? "p-0 pr-1" : "px-1 md:px-2 py-1 md:py-2 border border-gray-600 backdrop-blur-lg rounded-full" }
+              ${!isAuthenticated ? "md:pl-3" : "md:px-4"} transition-all duration-150 ease-in-out `}
             >
               <ul className="flex space-x-4 justify-center items-center">
                 {links.map((link) => (
@@ -114,7 +108,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={() => navigate("/login")}
-                      className=" cursor-pointer block px-3 py-1 text-md font-medium  text-[var(--text-color)] bg-blue-400 rounded-full  hover:scale-105 transition-transform duration-200 ease-in-out "
+                      className={` cursor-pointer block px-3  py-1 text-md font-medium  text-[var(--text-color)] bg-blue-400 rounded-full  hover:scale-105 transition-transform duration-200 ease-in-out `}
                     >
                       Login
                     </button>
@@ -125,17 +119,14 @@ const Navbar = () => {
             {/* </div> */}
           </div>
 
-          {isAuthenticated ? <ProfileAvatar /> : null}
+          {isAuthenticated && <ProfileAvatar />}
         </div>
       </div>
 
       {/* show navbar menu */}
       {isOpen ? (
         <div
-          className={`block md:hidden fixed top-0 left-0 z-50 w-full h-full bg-black/50 backdrop-blur-lg
-              
-            transition-all duration-300 ease-in-out
-            `}
+          className={`block md:hidden fixed top-0 left-0 z-50 w-full h-full bg-black/50 backdrop-blur-lg transition-all duration-300 ease-in-out `}
         >
           <nav className="  fixed  w-full h-full flex flex-col items-center justify-center ">
             {/* Close button */}
