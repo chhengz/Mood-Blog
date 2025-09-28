@@ -1,22 +1,22 @@
-import { useState, useCallback } from 'react';
-import axios from 'axios';
+// useApi.js
 
-// Create a reusable Axios instance
+
+import { useState, useCallback } from "react";
+import axios from "axios";
+
 const axiosInstance = axios.create({
-  baseURL: '/api/v1',
+  baseURL: import.meta.env.VITE_API_URL || "/api/v1",
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 });
 
-// Custom hook
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Generic request handler
   const request = useCallback(async (method, endpoint, data = null, config = {}) => {
     setLoading(true);
     setError(null);
@@ -25,7 +25,7 @@ const useApi = () => {
       const response = await axiosInstance({
         method,
         url: endpoint,
-        data: (method === 'post' || method === 'put') && data === null ? {} : data,
+        data,
         ...config,
       });
       return response.data;
@@ -49,19 +49,19 @@ const useApi = () => {
     }
   }, []);
 
-  // Method wrappers
+  // Wrappers
   const get = (endpoint, params = {}, token = null) =>
     request("get", endpoint, null, {
       params,
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
 
-  const post = (endpoint, {data, token = null}) =>
+  const post = (endpoint, data = {}, token = null) =>
     request("post", endpoint, data, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
 
-  const put = (endpoint, {data, token = null}) =>
+  const put = (endpoint, data = {}, token = null) =>
     request("put", endpoint, data, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
@@ -75,7 +75,3 @@ const useApi = () => {
 };
 
 export default useApi;
-
-
-// Usage example:
-// const { get, post, put, delete: remove, loading, error } = useApi();

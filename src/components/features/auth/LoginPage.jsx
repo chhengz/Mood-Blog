@@ -35,18 +35,15 @@ const LoginPage = () => {
     }
 
     try {
-      const result = await post("/auth/login", { data: { email, password } });
+      const result = await post("/auth/login", { email, password });
 
       if (result?.status === "success" && result?.data?.accessToken) {
         login(result.data.user, result.data.accessToken);
-
-        // optionally save refreshToken somewhere
-        // localStorage.setItem("refreshToken", result.data.refreshToken);
-
         navigate("/home");
       } else {
         setFormError(result?.message || "Invalid email or password.");
       }
+
     } catch (err) {
       setFormError(err.response?.data?.message || err.message);
     }
