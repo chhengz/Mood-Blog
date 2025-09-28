@@ -42,8 +42,8 @@ export const AppProvider = ({ children }) => {
                     setIsAuthenticated(true);
                 } else {
                     // Failure: Token invalid or expired, clear everything
-                    console.log("Token validation failed. Logging out.");
-                    logout(); // Use the existing logout function to clear storage/state
+                    // console.log("Token validation failed. Logging out.");
+                    logout();
                 }
                 setIsCheckingAuth(false);
             } else {

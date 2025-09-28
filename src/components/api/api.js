@@ -1,5 +1,7 @@
 // api.js
 
+const API_BASE_URL = import.meta.env.VITE_API_URL + "/api/v1";
+
 /**
  * Simulates an API call to fetch user data using an authentication token.
  * In a real application, this would be an actual 'GET /user' or similar
@@ -19,7 +21,7 @@ export const fetchUserByToken = async (token) => {
     try {
         // Replace this with your actual API endpoint and method (e.g., Axios/Fetch)
 
-        const response = await fetch('/user/me', {
+        const response = await fetch(`${API_BASE_URL}/users/me`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
