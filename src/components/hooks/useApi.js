@@ -4,8 +4,10 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL + "/api/v1";
+
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "/api/v1",
+  baseURL: API_BASE_URL || "/api/v1",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
