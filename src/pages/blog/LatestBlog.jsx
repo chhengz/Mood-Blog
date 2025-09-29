@@ -33,7 +33,7 @@ const LatestBlog = () => {
 
   return (
     <main className="max-w-4xl mx-auto py-6 md:py-8">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-200">Latest Blog Posts</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">Latest Blog Posts</h1>
 
       <PostCard loading={loading} posts={latestFivePosts} error={error}
       />

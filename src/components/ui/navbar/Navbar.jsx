@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import { AppContext } from "../../contexts/AppContext";
 import { Menu, Minimize2, X, House, Pilcrow, ContactRound } from "lucide-react";
 import ProfileAvatar from "../profile/ProfileAvatar";
+import ToggleThemeButton from "../button/ToggleThemeButton";
 
 const links = [
   { label: "Home", path: "/home", icon: <House /> },
@@ -14,7 +15,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   // const [showLoginForm, setShowLoginForm] = useState(false);
-  const { isAuthenticated } = useContext(AppContext);
+  const { isAuthenticated, toggleTheme, theme } = useContext(AppContext);
 
   // handle scroll to change header style
   const [isScrolled, setIsScrolled] = useState(false);
@@ -48,23 +49,22 @@ const Navbar = () => {
     <>
       <div className=" fixed left-0 top-5 w-full px-6 md:px-8 z-50">
         <div
-          className={`container mx-auto md:max-w-3/4 lg:max-w-2/4  flex justify-between items-center 
-          ${isScrolled
+          className={`container mx-auto md:max-w-3/4 lg:max-w-2/4  ${
+            isAuthenticated ? "md:grid md:grid-cols-3" : "flex justify-between items-center"
+          } 
+          ${
+            isScrolled
               ? " p-2  border border-gray-600/50 backdrop-blur-lg rounded-full shadow-md"
               : "bg-transparent border-transparent"
-            } 
+          } 
         transition-all duration-300`}
         >
           <div
-            onClick={() => navigate('/home')}
+            onClick={() => navigate("/home")}
             // ${ isAuthenticated ? "" : ""}
-            className={`hidden md:block
-             
-            ${isScrolled
-                ? "ml-2 p-0"
-                : "px-2 py-2 border border-gray-600 backdrop-blur-lg rounded-full"
-              } 
-            cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out`}
+            className={`hidden md:block p-2 bg-zinc-800/50  ${
+              isScrolled ? "" : "border border-gray-600 backdrop-blur-lg"
+            } justify-self-start rounded-full cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
           >
             <h1 className="text-md font-bold">
               <House />
@@ -81,13 +81,19 @@ const Navbar = () => {
             </button>
           </div>
           {/* // ) : null } */}
-          <div>
+          <div className="">
             {/* ${isScrolled ? '' : 'border border-gray-600 backdrop-blur-lg rounded-full'} */}
             {/* <div className={`p-1 md:pl-4 ${isAuthenticated ? 'md:pr-4' : ''}  `}> */}
             <nav
-              className={` flex items-center justify-center ${isAuthenticated ? "hidden md:block" : ""} 
-              ${isScrolled ? "p-0 pr-1" : "px-1 md:px-2 py-1 md:py-2 border border-gray-600 backdrop-blur-lg rounded-full" }
-              ${!isAuthenticated ? "md:pl-3" : "md:px-4"} transition-all duration-150 ease-in-out `}
+              className={` ${
+                isAuthenticated ? "hidden md:block md:px-4 w-fit justify-self-center" : "md:pl-3 justify-center"
+              } flex items-center 
+              ${
+                isScrolled
+                  ? "p-0 md:pr-0"
+                  : "backdrop-blur-lg rounded-full"
+              }
+              transition-all duration-150 ease-in-out `}
             >
               <ul className="flex space-x-4 justify-center items-center">
                 {links.map((link) => (
@@ -104,22 +110,45 @@ const Navbar = () => {
                   </li>
                 ))}
 
+               
+
                 {isAuthenticated ? null : (
-                  <li>
+                  <li
+                    className={`w-fit ${
+                      isScrolled
+                        ? "p-1 border border-gray-600 backdrop-blur-lg"
+                        : "m-1"
+                    } rounded-full `}
+                  >
                     <button
                       onClick={() => navigate("/login")}
-                      className={` cursor-pointer block px-3  py-1 text-md font-medium  text-[var(--text-color)] bg-blue-400 rounded-full  hover:scale-105 transition-transform duration-200 ease-in-out `}
+                      className={`  cursor-pointer block px-3  py-1 text-md font-medium  text-[var(--text-color)] bg-blue-400 rounded-full  hover:scale-105 transition-transform duration-200 ease-in-out `}
                     >
                       Login
                     </button>
                   </li>
                 )}
+                
               </ul>
+
+              {!isAuthenticated && (
+                    <div className="ml-2">
+                      <ToggleThemeButton isScrolled={isScrolled} />
+                    </div>
+                )}
             </nav>
+
+            
+
             {/* </div> */}
           </div>
 
-          {isAuthenticated && <ProfileAvatar />}
+          {isAuthenticated && (
+            <div className="flex gap-2 items-center justify-center justify-self-end">
+              <ToggleThemeButton isScrolled={isScrolled} />
+              <ProfileAvatar isScrolled={isScrolled} />
+            </div>
+          )}
         </div>
       </div>
 

@@ -19,7 +19,7 @@ const links = [
   },
 ];
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({isScrolled = false}) => {
   const { user, logout } = useContext(AppContext);
 
   const menuRef = useRef(null);
@@ -46,18 +46,18 @@ const ProfileAvatar = () => {
     <div className="relative">
       <div
         onClick={() => setIsOpen(!isOpen)}
-        title={user.username}
-        className="rounded-full w-10 h-10 overflow-hidden border-1 border-gray-200/50 cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out"
+        title={user?.username || ''}
+        className={`rounded-full w-10 h-10 overflow-hidden  ${isScrolled ? 'bg-zinc-800/50' :  'border-1 border-gray-600' } cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
       >
         {/* <img
           src={user. AVATAR_URL}
           alt="Profile Avatar"
           className="object-cover w-full h-full"
         /> */}
-        <div className="w-full h-full grid place-items-center bg-zinc-800">
+        <div className={`w-full h-full grid place-items-center ${isScrolled ? '' : 'bg-zinc-800/50'} `}>
           <p className="font-bold text-2xl ">
             {
-              user.username[0].toUpperCase() /* Display first letter of username as avatar */
+              user?.username[0].toUpperCase() || '' /* Display first letter of username as avatar */
             }
           </p>
         </div>

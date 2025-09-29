@@ -59,7 +59,7 @@ const ViewPost = () => {
       )}
 
       {/* Title */}
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-100 mb-2">
+      <h1 className="text-3xl md:text-4xl font-bold dark:text-gray-100 mb-2">
         {post.title}
       </h1>
 

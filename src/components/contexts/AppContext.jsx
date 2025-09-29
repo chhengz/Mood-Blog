@@ -25,7 +25,7 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(initialToken);
     // Use initialToken presence for initial isAuthenticated state
     const [isAuthenticated, setIsAuthenticated] = useState(!!initialToken); 
-    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
     const [isCheckingAuth, setIsCheckingAuth] = useState(!!initialToken); // New: Loading state
 
 
@@ -35,14 +35,18 @@ export const AppProvider = ({ children }) => {
             if (token) {
                 setIsCheckingAuth(true);
                 const userData = await fetchUserByToken(token);
+
                 
                 if (userData) {
                     // Success: Token is valid, set user data
-                    setUser(userData);
+                    // console.log(userData.data);
+                    setUser(userData.data);
+                    // setToken(userData.token);
                     setIsAuthenticated(true);
                 } else {
+                    // console.log(userData);
                     // Failure: Token invalid or expired, clear everything
-                    // console.log("Token validation failed. Logging out.");
+                    console.log("Token validation failed. Logging out.");
                     logout();
                 }
                 setIsCheckingAuth(false);
@@ -93,13 +97,23 @@ export const AppProvider = ({ children }) => {
         setToken(newToken);
     }, []);
 
+   
+
     const toggleTheme = useCallback(() => {
         setTheme((prevTheme) => {
-            const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+            const newTheme = prevTheme === 'dark' ? 'light' : 'dark';
             localStorage.setItem('theme', newTheme);
             return newTheme;
         });
     }, []);
+
+     useEffect(() => {
+        if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        } else {
+        document.documentElement.classList.remove('dark');
+        }
+    }, [theme]);
 
     const refreshUser = useCallback(async () => {
         if (token) {

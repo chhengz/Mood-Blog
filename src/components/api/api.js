@@ -1,6 +1,8 @@
 // api.js
 
-const API_BASE_URL = import.meta.env.VITE_API_URL + "/api/v1";
+import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_MODE === "production" ? import.meta.env.VITE_API_URL + "/api/v1" : "/api/v1";
 
 /**
  * Simulates an API call to fetch user data using an authentication token.
@@ -21,21 +23,22 @@ export const fetchUserByToken = async (token) => {
     try {
         // Replace this with your actual API endpoint and method (e.g., Axios/Fetch)
 
-        const response = await fetch(`${API_BASE_URL}/users/me`, {
-            method: 'GET',
+        const response = await axios.get(`${API_BASE_URL}/users/me/profile`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });
 
-        if (!response.ok) {
+        
+        if (response.status === 200) {
+            const userData = response.data;
+            return userData;
+        } else {
             // If token is invalid/expired, the server usually returns a 401
+            // console.log(response)
             throw new Error('Token validation failed or expired.');
         }
-
-        const userData = await response.json();
-        return userData;
 
 
         // --- Simulated Success/Failure ---

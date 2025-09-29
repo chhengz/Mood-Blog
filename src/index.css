@@ -6,7 +6,9 @@
 
 :root {
   /* --bg-color: #262626; */
-  --bg-color: #1E1E20;
+  /* --bg-color: #1E1E20; */
+  --bg-color: #171717;
+  --bg-light-color: #E5E5E5;
   --text-color: #ffffff;
   --text-gray: #7F7F7F;
   --text-black: #262626;
@@ -17,9 +19,15 @@
 
 /* bg-gradient-to-b bg-[var(--bg-color)] text-[var(--text-color)] */
 
-body {
-  @apply  bg-gradient-to-bl dark:from-[var(--bg-color)] dark:to-[var(--bg-color)]/95 dark:text-[var(--text-color)] min-h-screen;
+@layer base {
+
+  html, body {
+    @apply  bg-gradient-to-bl bg-[var(--bg-light-color)] dark:from-[var(--bg-color)] dark:to-[var(--bg-color)]/95 dark:text-[var(--text-color)] min-h-screen;
+    /* @apply  bg-[var(--bg-light-color)] dark:bg-[var(--bg-color)] min-h-screen; */
+  }
 }
+
+
 
 /* custom style for link */
 
