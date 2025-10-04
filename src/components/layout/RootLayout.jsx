@@ -15,7 +15,7 @@ const RootLayout = () => {
     <>
       <ScrollToTop />
       
-        <div className={` ${theme === 'light' ? 'bg-[var(--bg-light-color)] text-[var(--text-black)]' :  'dark:bg-[var(--bg-color)]'} `  }>
+        <div className={`  `  }>
           <div className=" relative container  md:max-w-3/4 lg:max-w-2/4 mx-auto min-h-screen flex flex-col p-8 flex-grow">
         <Navbar />
 
@@ -23,9 +23,7 @@ const RootLayout = () => {
           <Outlet />
         </div>
 
-        <div className={` ${theme === 'light' ? 'bg-[var(--bg-light-color)]' :  'dark:bg-[var(--bg-color)]'} min-h-screen`}>
-          <h1 className={` ${theme === 'light' ? 'text-black' : 'dark:text-white'} `}>Hello World</h1>
-        </div>
+        
       </div>
         </div>
 

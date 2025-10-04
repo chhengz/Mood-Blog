@@ -50,7 +50,7 @@ const Navbar = () => {
       <div className=" fixed left-0 top-5 w-full px-6 md:px-8 z-50">
         <div
           className={`container mx-auto md:max-w-3/4 lg:max-w-2/4  ${
-            isAuthenticated ? "md:grid md:grid-cols-3" : "flex justify-between items-center"
+            isAuthenticated ? "flex justify-between md:grid md:grid-cols-3" : "flex justify-between items-center"
           } 
           ${
             isScrolled
@@ -81,7 +81,7 @@ const Navbar = () => {
             </button>
           </div>
           {/* // ) : null } */}
-          <div className="">
+          <div className="flex items-center justify-center">
             {/* ${isScrolled ? '' : 'border border-gray-600 backdrop-blur-lg rounded-full'} */}
             {/* <div className={`p-1 md:pl-4 ${isAuthenticated ? 'md:pr-4' : ''}  `}> */}
             <nav
@@ -103,14 +103,12 @@ const Navbar = () => {
                   >
                     <NavLink
                       to={link.path}
-                      className={`text-md font-medium  text-[var(--text-gray)] hover:not-[.active]:text-[var(--text-color)] transition-all duration-150 ease-in-out `}
+                      className={`text-lg font-medium  text-[var(--text-gray)] hover:not-[.active]:text-[var(--text-color)] transition-all duration-150 ease-in-out `}
                     >
                       {link.label}
                     </NavLink>
                   </li>
                 ))}
-
-               
 
                 {isAuthenticated ? null : (
                   <li
@@ -161,7 +159,7 @@ const Navbar = () => {
             {/* Close button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-8 left-8 border border-gray-600 rounded-full p-2 hover:scale-105 transition cursor-pointer"
+              className={`absolute ${isScrolled ? 'top-7 left-8' : 'top-5 left-6'}  border border-gray-600 rounded-full p-2 hover:scale-105 transition cursor-pointer`}
             >
               <X className="w-6 h-6 text-white" />
             </button>

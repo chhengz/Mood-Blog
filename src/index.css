@@ -27,6 +27,11 @@
   }
 }
 
+.dark {
+  /* @apply bg-[var(--bg-color)] text-[var(--text-color)]; */
+  /* @apply bg-gradient-to-b bg-[var(--bg-color)] text-[var(--text-color)]; */
+  @apply bg-gradient-to-bl from-[var(--bg-color)] to-[var(--bg-color)]/95 text-[var(--text-color)];
+}
 
 
 /* custom style for link */

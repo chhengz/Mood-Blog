@@ -6,6 +6,7 @@ import AboutPage from "./pages/about/AboutPage";
 import ProtectedRoute from "./components/features/auth/ProtectedRoute";
 import LoginPage from "./components/features/auth/LoginPage";
 import ViewPost from "./pages/blog/ViewPost";
+import OtpPage from "./components/features/auth/OtpPage";
 
 const routers = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const routers = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/otp',
+    element: <OtpPage />
   }
 ]);
 
