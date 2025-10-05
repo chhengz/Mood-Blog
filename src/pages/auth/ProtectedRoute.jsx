@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Navigate } from "react-router";
-import { AppContext } from "../../contexts/AppContext";
+import { AppContext } from "../../components/contexts/AppContext";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, isCheckingAuth } = useContext(AppContext);

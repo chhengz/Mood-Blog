@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { AppContext } from "../../contexts/AppContext";
-import useApi from "../../hooks/useApi";
 import { Link, useNavigate } from "react-router";
-import LoginForm from "./LoginForm";
 import { House, X } from "lucide-react";
-import OtpForm from "./OtpForm";
+
+import useApi from "../../components/hooks/useApi";
+import { AppContext } from "../../components/contexts/AppContext";
+import { LoginForm, OtpForm } from "../../components/ui";
 
 const LoginPage = () => {
   const navigate = useNavigate();

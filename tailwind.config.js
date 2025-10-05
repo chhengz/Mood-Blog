@@ -1,9 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
+import tailwindcss from 'tailwindcss';
+
+tailwindcss.Config();
+
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./index.html', "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
-  darkMode: 'class', // Use 'class' to toggle dark mode by adding/removing the 'dark' class
+  darkMode: 'class', 
   plugins: [],
 };

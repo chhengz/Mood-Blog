@@ -103,7 +103,7 @@ const Navbar = () => {
                   >
                     <NavLink
                       to={link.path}
-                      className={`text-lg font-medium  text-[var(--text-gray)] hover:not-[.active]:text-[var(--text-color)] transition-all duration-150 ease-in-out `}
+                      className={`text-lg md:text-xl font-medium text-[var(--text-black)] dark:text-[var(--text-gray)] hover:not-[.active]:text-[var(--text-color)] transition-all duration-150 ease-in-out `}
                     >
                       {link.label}
                     </NavLink>
@@ -141,9 +141,13 @@ const Navbar = () => {
             {/* </div> */}
           </div>
 
+
           {isAuthenticated && (
             <div className="flex gap-2 items-center justify-center justify-self-end">
+              {/* Button switch theme */}
               <ToggleThemeButton isScrolled={isScrolled} />
+
+              {/* Profile Avatar */}
               <ProfileAvatar isScrolled={isScrolled} />
             </div>
           )}

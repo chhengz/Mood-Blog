@@ -24,32 +24,18 @@ const PostCard = ({ loading, posts, error }) => {
           <Link to={`/blog/${blog.slug}`} key={blog.id}>
             <li
             
-            className="group mb-6 md:mb-4 p-4 rounded-xl shadow-lg hover:shadow-emerald-800 border border-[var(--border-color)] transistion-all duration-200 ease-in-out cursor-pointer"
+            className="group flex items-start justify-between mb-4"
           >
-            <h2 className=" text-md font-medium md:text-xl md:font-bold text-gray-300 group-hover:text-gray-200">
+            <h2 className=" text-md  md:text-lg  text-[var(--text-gray)] group-hover:text-gray-400">
               {blog.title}
               {/* <Link to={`/blog/${post.slug}`}>{post.title}</Link> */}
             </h2>
-            <p className="text-sm text-[var(--text-gray)] group-hover:text-gray-400">
-              {blog.excerpt}
-            </p>
-
-            <div className="full flex justify-between items-center mt-2">
-              <div className="flex items-center">
-                <div className="w-6 h-6 bg-blue-400 border border-gray-200 rounded-full overflow-hidden flex justify-center items-center mr-2">
-                  <p className="font-bold">{blog?.author?.username?.[0]?.toUpperCase() || "?"}</p>
-                </div>
-                <span className="mt-1 text-xs text-[var(--text-gray)] group-hover:text-gray-400">
-                  {blog?.author?.username || "Unknown"} •{" "}
-                  {blog?.createdAt ? new Date(blog.createdAt).toLocaleDateString() : ""}
-                </span>
-              </div>
-              <div>
-                <span className="mt-1 text-xs text-[var(--text-gray)] group-hover:text-gray-400">
+            <span className="mt-1 text-md text-[var(--text-gray)] group-hover:text-gray-400 group-hover:underline">
                     {blog?.createdAt ? new Date(blog.createdAt).toLocaleDateString() : ""}
                   </span>
-              </div>
-            </div>
+            
+
+            
           </li>
           </Link>
         ))

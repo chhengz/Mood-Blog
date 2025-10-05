@@ -1,5 +1,5 @@
 import React from 'react'
-import MostView from '../blog/MostView'
+
 import LatestBlog from '../blog/LatestBlog'
 
 const Home = () => {

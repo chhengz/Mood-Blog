@@ -20,7 +20,7 @@ const AboutPage = () => {
           d
         </div> */}
 
-        <div className="px-2 sm:px-4 py-2 sm:py-4 flex items-center bg-gray-800  rounded-2xl shadow-md">
+        <div className="px-2 sm:px-4 py-2 sm:py-4 flex items-center  dark:bg-gray-200 bg-gray-800  rounded-2xl shadow-md">
           <div className="border w-24 h-24 rounded-xl overflow-hidden">
             <img
               src={AVATAR_URL}
@@ -43,13 +43,13 @@ const AboutPage = () => {
             <div className="p-1 gap-2 flex border border-gray-400 rounded-xl">
               <button 
               onClick={() => setActiveTab('overview')}
-              className={`cursor-pointer px-3 py-0 text-md  text-gray-200 hover:text-white rounded-lg  ${activeTab === 'overview' ? 'bg-blue-400' : ''}`}>
+              className={`cursor-pointer px-3 py-0 text-lg  text-gray-200 hover:text-white rounded-lg  ${activeTab === 'overview' ? 'bg-blue-400' : ''}`}>
               Overview
               </button>
 
               <button 
               onClick={() => setActiveTab('details')}
-              className={`cursor-pointer px-3 py-0 text-md  text-gray-200 hover:text-white rounded-lg ${activeTab === 'details' ? 'bg-blue-400' : ''}`}>
+              className={`cursor-pointer px-3 py-0 text-lg  text-gray-200 hover:text-white rounded-lg ${activeTab === 'details' ? 'bg-blue-400' : ''}`}>
               Details
               </button>
             </div>
@@ -60,8 +60,8 @@ const AboutPage = () => {
           <div className="mt-6 p-4 border border-gray-600 rounded-xl shadow-md">
             {activeTab === 'overview' && (
               <div>
-                <h2 className="text-md md:text-xl font-semibold mb-2 text-gray-200">Overview</h2>
-                <p className="text-gray-400 text-sm md:text-md">
+                <h2 className="text-lg md:text-2xl font-semibold mb-2 text-gray-200">Overview</h2>
+                <p className="text-gray-400 text-md md:text-lg">
                   Hello! I'm {ABOUT_ME.name}, a passionate web developer dedicated to crafting beautiful and functional web applications. With a strong foundation in both front-end and back-end technologies, I strive to create seamless user experiences that are both engaging and efficient.
                 </p>
               </div>
@@ -72,8 +72,8 @@ const AboutPage = () => {
               <div>
 
               <div className="">
-                <h2 className="text-md md:text-xl font-semibold mb-2 text-gray-200">Details</h2>
-                <ul className="list-disc list-inside ml-2 text-sm md:text-md text-gray-300">
+                <h2 className="text-lg md:text-2xl font-semibold mb-2 text-gray-200">Details</h2>
+                <ul className="list-disc list-inside ml-2 flex-wrap text-md md:text-lg text-gray-300">
                   <li><strong>Location:</strong> {ABOUT_ME.location}</li>
                   
                   <li><strong>Skills:</strong> {ABOUT_ME.skills.join(", ")}</li>
@@ -85,9 +85,9 @@ const AboutPage = () => {
               </div>
 
               <div className="mt-6 p-4 border border-gray-600 rounded-md shadow-md">
-                <h2 className="text-md md:text-xl font-semibold mb-2 text-gray-200">Experiences</h2>
+                <h2 className="text-lg md:text-2xl font-semibold mb-2 text-gray-200">Experiences</h2>
 
-                <ul className="list-disc list-inside ml-2 text-sm md:text-md text-gray-300">
+                <ul className="list-disc list-inside ml-2 text-md md:text-lg text-gray-300">
                   {
                     ABOUT_ME.experience.map((exp, index) => (
                       <li key={index}

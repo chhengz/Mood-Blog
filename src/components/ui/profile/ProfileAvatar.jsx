@@ -47,14 +47,14 @@ const ProfileAvatar = ({isScrolled = false}) => {
       <div
         onClick={() => setIsOpen(!isOpen)}
         title={user?.username || ''}
-        className={`rounded-full w-10 h-10 overflow-hidden  ${isScrolled ? 'bg-zinc-800/50' :  'border-1 border-gray-600' } cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
+        className={`rounded-full w-10 h-10 overflow-hidden  ${isScrolled ? '' :  '' } border-1 border-gray-600 cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
       >
         {/* <img
           src={user. AVATAR_URL}
           alt="Profile Avatar"
           className="object-cover w-full h-full"
         /> */}
-        <div className={`w-full h-full grid place-items-center ${isScrolled ? '' : 'bg-zinc-800/50'} `}>
+        <div className={`w-full h-full grid place-items-center  bg-zinc-400/50 `}>
           <p className="font-bold text-2xl ">
             {
               user?.username[0].toUpperCase() || '' /* Display first letter of username as avatar */
