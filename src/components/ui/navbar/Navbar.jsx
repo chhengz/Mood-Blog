@@ -7,7 +7,7 @@ import ToggleThemeButton from "../button/ToggleThemeButton";
 
 const links = [
   { label: "Home", path: "/home", icon: <House /> },
-  { label: "Blog", path: "/blog", icon: <Pilcrow /> },
+  { label: "Posts", path: "/blog", icon: <Pilcrow /> },
   { label: "About", path: "/about", icon: <ContactRound /> },
 ];
 
@@ -50,7 +50,9 @@ const Navbar = () => {
       <div className=" fixed left-0 top-5 w-full px-6 md:px-8 z-50">
         <div
           className={`container mx-auto md:max-w-3/4 lg:max-w-2/4  ${
-            isAuthenticated ? "flex justify-between md:grid md:grid-cols-3" : "flex justify-between items-center"
+            isAuthenticated
+              ? "flex justify-between md:grid md:grid-cols-3"
+              : "flex justify-between items-center"
           } 
           ${
             isScrolled
@@ -86,13 +88,11 @@ const Navbar = () => {
             {/* <div className={`p-1 md:pl-4 ${isAuthenticated ? 'md:pr-4' : ''}  `}> */}
             <nav
               className={` ${
-                isAuthenticated ? "hidden md:block md:px-4 w-fit justify-self-center" : "md:pl-3 justify-center"
+                isAuthenticated
+                  ? "hidden md:block md:px-4 w-fit justify-self-center"
+                  : "md:pl-3 justify-center"
               } flex items-center 
-              ${
-                isScrolled
-                  ? "p-0 md:pr-0"
-                  : "backdrop-blur-lg rounded-full"
-              }
+              ${isScrolled ? "p-0 md:pr-0" : "backdrop-blur-lg rounded-full"}
               transition-all duration-150 ease-in-out `}
             >
               <ul className="flex space-x-4 justify-center items-center">
@@ -126,21 +126,17 @@ const Navbar = () => {
                     </button>
                   </li>
                 )}
-                
               </ul>
 
               {!isAuthenticated && (
-                    <div className="ml-2">
-                      <ToggleThemeButton isScrolled={isScrolled} />
-                    </div>
-                )}
+                <div className="ml-2">
+                  <ToggleThemeButton isScrolled={isScrolled} />
+                </div>
+              )}
             </nav>
-
-            
 
             {/* </div> */}
           </div>
-
 
           {isAuthenticated && (
             <div className="flex gap-2 items-center justify-center justify-self-end">
@@ -163,7 +159,9 @@ const Navbar = () => {
             {/* Close button */}
             <button
               onClick={() => setIsOpen(false)}
-              className={`absolute ${isScrolled ? 'top-7 left-8' : 'top-5 left-6'}  border border-gray-600 rounded-full p-2 hover:scale-105 transition cursor-pointer`}
+              className={`absolute ${
+                isScrolled ? "top-7 left-8" : "top-5 left-6"
+              }  border border-gray-600 rounded-full p-2 hover:scale-105 transition cursor-pointer`}
             >
               <X className="w-6 h-6 text-white" />
             </button>

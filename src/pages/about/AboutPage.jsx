@@ -20,8 +20,8 @@ const AboutPage = () => {
           d
         </div> */}
 
-        <div className="px-2 sm:px-4 py-2 sm:py-4 flex items-center  dark:bg-gray-200 bg-gray-800  rounded-2xl shadow-md">
-          <div className="border w-24 h-24 rounded-xl overflow-hidden">
+        <div className="px-2 sm:px-4 py-2 sm:py-4 flex items-center    rounded-2xl shadow-md">
+          <div className="border border-gray-400 w-24 h-24 rounded-xl overflow-hidden">
             <img
               src={AVATAR_URL}
               alt="Avatar"

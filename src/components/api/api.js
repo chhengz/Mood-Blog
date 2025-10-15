@@ -1,70 +1,73 @@
 // api.js
+import axios from "axios";
 
-import axios from 'axios';
+const API_BASE_URL =
+  import.meta.env.VITE_MODE === "production"
+    ? import.meta.env.VITE_API_URL + "/api/v1"
+    : "/api/v1";
 
-const API_BASE_URL = import.meta.env.VITE_MODE === "production" ? import.meta.env.VITE_API_URL + "/api/v1" : "/api/v1";
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true, 
+});
 
-/**
- * Simulates an API call to fetch user data using an authentication token.
- * In a real application, this would be an actual 'GET /user' or similar
- * API call using libraries like axios or the native fetch API.
- *
- * @param {string} token - The authentication token from localStorage.
- * @returns {Promise<object|null>} - A Promise that resolves to user data or null.
- */
-export const fetchUserByToken = async (token) => {
-    // 1. Basic Token Check
-    if (!token) {
-        console.warn("fetchUserByToken: No token provided.");
-        return null;
+// --- Request Interceptor ---
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("authToken");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// --- Response Interceptor for Auto Refresh ---
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // If access token expired and not retried yet
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        // call refresh endpoint
+        const res = await axios.post(
+          `${API_BASE_URL}/auth/refresh-token`,
+          {},
+          { withCredentials: true }
+        );
+
+        console.log(res);
+
+        const newAccessToken = res.data.accessToken;
+
+        // store new token
+        localStorage.setItem("authToken", newAccessToken);
+
+        // retry original request with new token
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return api(originalRequest);
+      } catch (refreshError) {
+        console.warn("Refresh failed, user must log in again.");
+        localStorage.removeItem("authToken");
+        return Promise.reject(refreshError);
+      }
     }
 
-    // --- Start: Real API Call Simulation ---
-    try {
-        // Replace this with your actual API endpoint and method (e.g., Axios/Fetch)
+    return Promise.reject(error);
+  }
+);
 
-        const response = await axios.get(`${API_BASE_URL}/users/me/profile`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
+export default api;
 
-        
-        if (response.status === 200) {
-            const userData = response.data;
-            return userData;
-        } else {
-            // If token is invalid/expired, the server usually returns a 401
-            // console.log(response)
-            throw new Error('Token validation failed or expired.');
-        }
-
-
-        // --- Simulated Success/Failure ---
-        // if (token === 'VALID_MOCK_TOKEN') {
-        //     // Simulate successful response with user data
-        //     await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-        //     return {
-        //         id: 'user-123',
-        //         username: 'mockUser',
-        //         email: 'mock@example.com',
-        //         roles: ['admin', 'user'],
-        //     };
-        // } else if (token === 'EXPIRED_MOCK_TOKEN') {
-        //      // Simulate a server-side token expiry response
-        //     await new Promise(resolve => setTimeout(resolve, 500));
-        //     throw new Error('401 Unauthorized: Token Expired');
-        // } else {
-        //     // Assume any other token is invalid
-        //     await new Promise(resolve => setTimeout(resolve, 500));
-        //     throw new Error('403 Forbidden: Invalid Token');
-        // }
-        // --- End: Real API Call Simulation ---
-
-    } catch (error) {
-        console.error('API Error during token validation:', error.message);
-        // Important: Return null on error so AppContext knows to clear the user/token
-        return null;
-    }
+// Example usage
+export const fetchUserByToken = async () => {
+  try {
+    const response = await api.get("/users/me/profile");
+    return response.data;
+  } catch (error) {
+    console.error("API Error:", error.message);
+    return null;
+  }
 };

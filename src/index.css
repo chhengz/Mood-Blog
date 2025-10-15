@@ -25,14 +25,17 @@
   .dark body {
     @apply bg-[var(--bg-color)] text-[var(--text-color)];
   }
+
+  .active {
+  @apply text-[var(--text-gray)] hover:text-[var(--text-color)];
+}
+
+ 
 }
 
 
 
 /* custom style for link */
-.active {
-  @apply text-[var(--text-black)] dark:text-[var(--text-gray)] hover:dark:text-[var(--text-color)];
-}
 
 
 .active > .active__navlink {
@@ -42,3 +45,5 @@
 /* .active__navlink {
   @apply text-[var(--text-black)] dark:text-[var(--text-gray)] hover:dark:text-[var(--text-color)];
 } */
+
+
