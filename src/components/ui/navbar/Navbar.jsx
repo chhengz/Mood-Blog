@@ -64,7 +64,7 @@ const Navbar = () => {
           <div
             onClick={() => navigate("/home")}
             // ${ isAuthenticated ? "" : ""}
-            className={`hidden md:block p-2 bg-zinc-800/50  ${
+            className={`hidden md:block p-2 bg-zinc-400/50  ${
               isScrolled ? "" : "border border-gray-600 backdrop-blur-lg"
             } justify-self-start rounded-full cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
           >
@@ -74,7 +74,7 @@ const Navbar = () => {
           </div>
 
           {/* {isAuthenticated ? ( */}
-          <div className=" flex md:hidden items-center justify-center border border-gray-600 backdrop-blur-lg rounded-full hover:scale-105 transition-transform duration-200 ease-in-out">
+          <div className=" flex md:hidden items-center justify-center bg-zinc-400/50 border border-gray-600 backdrop-blur-lg rounded-full hover:scale-105 transition-transform duration-200 ease-in-out">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-1 w-10 h-10 bg-transparent cursor-pointer"
@@ -103,7 +103,7 @@ const Navbar = () => {
                   >
                     <NavLink
                       to={link.path}
-                      className={`text-lg md:text-xl font-medium text-[var(--text-black)] dark:text-[var(--text-gray)] hover:not-[.active]:text-[var(--text-color)] transition-all duration-150 ease-in-out `}
+                      className={`text-lg md:text-xl font-medium  hover:text-[var(--text-color)]/80 transition-all duration-150 ease-in-out`}
                     >
                       {link.label}
                     </NavLink>
@@ -161,7 +161,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className={`absolute ${
                 isScrolled ? "top-7 left-8" : "top-5 left-6"
-              }  border border-gray-600 rounded-full p-2 hover:scale-105 transition cursor-pointer`}
+              }   border border-gray-600 rounded-full p-2 hover:scale-105 transition cursor-pointer`}
             >
               <X className="w-6 h-6 text-white" />
             </button>
@@ -173,12 +173,12 @@ const Navbar = () => {
                   <NavLink
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={"group flex items-center justify-start"}
+                    className={"group flex items-center justify-center "}
                   >
-                    <div className="mr-2 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-in-out">
+                    <div className="mr-2 -mt-1 transition-all duration-300 ease-in-out">
                       {link.icon}
                     </div>
-                    <span className="active__navlink text-2xl font-bold text-[var(--text-gray)] group-hover:text-[var(--text-color)] -translate-x-2 group-hover:translate-x-0 transition-all duration-200 ease-in-out">
+                    <span className="active__navlink text-2xl font-bold  group-hover:text-[var(--text-color)]  transition-all duration-200 ease-in-out">
                       {link.label}
                     </span>
                   </NavLink>
@@ -189,12 +189,6 @@ const Navbar = () => {
         </div>
       ) : null}
 
-      {/* Show Dialog LoginForm */}
-      {/* {showLoginForm && (
-        <div>
-          <h1>Login Form</h1>
-        </div>
-      )} */}
     </>
   );
 };

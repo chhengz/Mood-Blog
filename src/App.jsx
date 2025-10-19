@@ -10,6 +10,7 @@ import {
   LoginPage,
   ProtectedRoute,
 } from "./pages";
+import RefreshDebugPage from "./test/RefreshDebugPage";
 
 
 
@@ -27,12 +28,17 @@ const routers = createBrowserRouter([
       },
       { path: "/blog/:slug", element: <ViewPost /> },
       { path: "/about", element: <AboutPage /> },
+      {
+        path: "/refresh-debug",
+        element: <RefreshDebugPage />
+      }
     ],
   },
   {
     path: "/login",
     element: <LoginPage />,
   },
+  
 ]);
 
 const App = () => {

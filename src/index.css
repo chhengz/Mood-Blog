@@ -1,49 +1,38 @@
-@import 'tailwindcss';
-
-* {
-  box-sizing: border-box;
-}
+@import "tailwindcss";
 
 :root {
   --bg-color: #171717;
-  --bg-light-color: #E5E5E5;
+  --bg-light-color: #e5e5e5;
   --text-color: #ffffff;
-  --text-gray: #7F7F7F;
+  --text-gray: #7f7f7f;
   --text-black: #262626;
-  --border-color: #3D3D3D;
-  font-family: 'Courier New', Courier, monospace;
+  --border-color: #3d3d3d;
+  font-family: "Courier New", Courier, monospace;
 }
 
-
+.dark {
+  --bg-color: #e5e5e5;
+  --text-color: #262626;
+  --border-color: #2c2c2c;
+}
 
 @layer base {
-  html, body {
-    @apply min-h-screen bg-[var(--bg-light-color)] text-[var(--text-black)] transition-colors duration-300;
+  html,
+  body {
+    @apply  bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300;
   }
-
+/* 
   .dark html, 
   .dark body {
-    @apply bg-[var(--bg-color)] text-[var(--text-color)];
-  }
+    @apply bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300;
+  } */
 
   .active {
-  @apply text-[var(--text-gray)] hover:text-[var(--text-color)];
+    @apply text-[var(--text-gray)] hover:text-[var(--text-color)];
+  }
 }
-
- 
-}
-
-
 
 /* custom style for link */
-
-
-.active > .active__navlink {
-  @apply  text-[var(--text-color)];
+.active.active__navlink {
+  @apply text-[var(--bg-light-color)];
 }
-
-/* .active__navlink {
-  @apply text-[var(--text-black)] dark:text-[var(--text-gray)] hover:dark:text-[var(--text-color)];
-} */
-
-

@@ -5,6 +5,7 @@ import useSEO from "../../components/hooks/useSEO";
 import { ArrowLeft, Heart, House } from "lucide-react";
 import { AppContext } from "../../components/contexts/AppContext";
 import { fetchUserByToken } from "../../components/api/api";
+import Loading from "../../components/ui/loading/Loading";
 
 const ViewPost = () => {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ const ViewPost = () => {
     }
   };
 
-  if (loading) return <p className="text-gray-300">Loading...</p>;
+  if (loading) return <p className="text-gray-300"><Loading fullScreen spinner/></p>;
   if (error) return <p className="text-red-500">Error loading post.</p>;
   if (!postData) return <p className="text-gray-400">Post not found.</p>;
 
@@ -87,39 +88,36 @@ const ViewPost = () => {
           </div>
         </button>
 
-        {
-          user && (
-            <div>
+        {user && (
           <div>
-            <button 
-            className="cursor-pointer"
-            onClick={() => handleLike(postData.id)} disabled={liked}>
-              {!liked ? <Heart /> : <>❤️</>}
-            </button>
+            <div>
+              <button
+                className="cursor-pointer"
+                onClick={() => handleLike(postData.id)}
+                disabled={liked}
+              >
+                {!liked ? <Heart /> : <>❤️</>}
+              </button>
+            </div>
           </div>
-        </div>
-          )
-        }
+        )}
       </div>
 
       {/* Cover Image */}
       {
         <div className="relative h-48 sm:h-56 md:h-68 mb-6 shadow-lg rounded-xl overflow-hidden">
           <img
-          src={postData.coverImage}
-          alt={postData.title}
-          className="absolute w-full  object-cover "
-        />
-            <div className="absolute w-full bottom-0 left-0 bg-gradient-to-t from-black to-transparent p-4">
-              <h1 className="text-2xl md:text-3xl font-bold ">
-            {postData.title}
-          </h1>
-            </div>
-          
+            src={postData.coverImage}
+            alt={postData.title}
+            className="absolute w-full  object-cover "
+          />
+          <div className="absolute w-full bottom-0 left-0 bg-gradient-to-t from-black  to-transparent p-4">
+            <h1 className="text-2xl md:text-3xl text-white/80 font-bold ">
+              {postData.title}
+            </h1>
+          </div>
         </div>
-        }
-
-      
+      }
 
       {/* Metadata */}
       <div className="text-sm text-gray-400 mb-6 flex flex-wrap gap-4">

@@ -23,7 +23,7 @@ const Blog = () => {
 
   return (
     <main className="max-w-4xl mx-auto mt-6 md:mt-8">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-200">Blog Posts</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 ">Blog Posts</h1>
 
       <PostCard loading={loading} posts={posts} error={error} />
     </main>

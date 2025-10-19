@@ -10,7 +10,7 @@ const Loading = ({spinner = false, fullScreen = false}) => {
           
           <LoaderCircle className="h-8 w-8 text-blue-500 animate-spin" />
         ) : (
-          <p className="text-gray-400">Loading...</p>
+          <div className="text-gray-400">Loading...</div>
         )
       }
     </div>

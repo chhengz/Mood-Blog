@@ -38,7 +38,7 @@ api.interceptors.response.use(
           { withCredentials: true }
         );
 
-        console.log(res);
+        // console.log(res);
 
         const newAccessToken = res.data.accessToken;
 
