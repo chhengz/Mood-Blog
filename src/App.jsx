@@ -28,10 +28,10 @@ const routers = createBrowserRouter([
       },
       { path: "/blog/:slug", element: <ViewPost /> },
       { path: "/about", element: <AboutPage /> },
-      {
-        path: "/refresh-debug",
-        element: <RefreshDebugPage />
-      }
+      // {
+      //   path: "/refresh-debug",
+      //   element: <RefreshDebugPage />
+      // }
     ],
   },
   {

@@ -21,7 +21,7 @@ const RootLayout = () => {
           </div>
         </div>
 
-        <button onClick={() => navigate('/refresh-debug')}>refresh-debug</button>
+        {/* <button onClick={() => navigate('/refresh-debug')}>refresh-debug</button> */}
       </div>
     </>
   );
