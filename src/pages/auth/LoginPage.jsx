@@ -5,15 +5,16 @@ import { House, X } from "lucide-react";
 import useApi from "../../components/hooks/useApi";
 import { AppContext } from "../../components/contexts/AppContext";
 import { LoginForm, OtpForm } from "../../components/ui";
+import { OAuthButton } from "./OAuthButton";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
+  // const [isLoginWithOtp, setIsLoginWithOtp] = useState(false);
   const { post, loading, error } = useApi();
   const { login, isAuthenticated } = useContext(AppContext);
-  
-  const [otp, setOtp] = useState(Array(6).fill(''));
-  
+
+  // const [otp, setOtp] = useState(Array(6).fill(''));
+
   const [formError, setFormError] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
@@ -49,7 +50,6 @@ const LoginPage = () => {
       } else {
         setFormError(result?.message || "Invalid email or password.");
       }
-
     } catch (err) {
       setFormError(err.response?.data?.message || err.message);
     }
@@ -65,16 +65,15 @@ const LoginPage = () => {
     setFormError(null);
   };
 
+  //  const handleSendCode = async (email) => {
 
-   const handleSendCode = async (email) => {
+  //   console.log('Sending code to:', email);
+  // };
 
-    console.log('Sending code to:', email);
-  };
+  // const handleVerify = async (email, code) => {
 
-  const handleVerify = async (email, code) => {
-   
-    console.log('Verifying', email, code);
-  };
+  //   console.log('Verifying', email, code);
+  // };
 
   return (
     <div className="overflow-hidden relative min-h-screen ">
@@ -88,21 +87,23 @@ const LoginPage = () => {
 
       <div className="min-h-screen  p-4 md:p-6 flex flex-col items-center justify-center   rounded-xl backdrop-blur-2xl">
         <div className="flex flex-col items-center sm:w-75 ">
-          
-          {isAuthenticated ? <p className="text-green-500 mt-4">You are already logged in.</p> : (
+          {isAuthenticated ? (
+            <p className="text-green-500 mt-4">You are already logged in.</p>
+          ) : (
             <>
-          
-          <div className="mb-6 flex place-items-center bg-zinc-800 rounded-2xl shadow-lg">
-            <div className="w-12 h-12 bg-white rounded-2xl grid place-items-center">
-              <p className="font-bold text-4xl text-center text-zinc-800 mt-1">
-                S
-              </p>
-            </div>
-          </div>
-          {/* bg-gradient-to-r from-gray-700 to-gray-500 bg-clip-text text-transparent */}
-          <h1 className="text-2xl font-medium mb-2 text-center">Yooo, welcome back!</h1>
+              <div className="mb-6 flex place-items-center bg-zinc-800 rounded-2xl shadow-lg">
+                <div className="w-12 h-12 bg-white rounded-2xl grid place-items-center">
+                  <p className="font-bold text-4xl text-center text-zinc-800 mt-1">
+                    S
+                  </p>
+                </div>
+              </div>
+              {/* bg-gradient-to-r from-gray-700 to-gray-500 bg-clip-text text-transparent */}
+              <h1 className="text-2xl font-medium mb-2 text-center">
+                Yooo, welcome back!
+              </h1>
 
-    {
+              {/* {
       isLoginWithOtp ? (
         <OtpForm
           onSendCode={handleSendCode}
@@ -119,18 +120,25 @@ const LoginPage = () => {
               error={formError || error}
             />
       )
-    }
-           
-            
-      
+    } */}
 
-          <div className="w-full flex items-center mb-4">
-            <div className="w-full h-0.5 bg-zinc-400/30 rounded-md"></div>
-            <p className="mx-2 text-sm">or</p>
-            <div className="w-full h-0.5 bg-zinc-400/30 rounded-md"></div>
-          </div>
+              <LoginForm
+                formData={formData}
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+                isLoading={loading}
+                error={formError || error}
+              />
 
-          <div className="w-full">
+              <div className="w-full flex items-center mb-4">
+                <div className="w-full h-0.5 bg-zinc-400/30 rounded-md"></div>
+                <p className="mx-2 text-sm">or</p>
+                <div className="w-full h-0.5 bg-zinc-400/30 rounded-md"></div>
+              </div>
+
+              <OAuthButton />
+
+              {/* <div className="w-full">
             <button
               type="submit"
               onClick={() => setIsLoginWithOtp(!isLoginWithOtp)}
@@ -138,32 +146,29 @@ const LoginPage = () => {
             >
               {isLoginWithOtp ? "login with email" : "Single sign-on (SSO)"} 
             </button>
-          </div>
+          </div> */}
 
-
-          <div className="mt-6 text-md text-center">
-            <p className="text-gray-500">
-              By signing in, you agree to our{" "}
-              <Link
-                to="#TermsOfService"
-                className="text-blue-500 hover:underline"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                to="#PrivacyPolicy"
-                className="text-blue-500 hover:underline"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p>
-          </div>
-
-          </>
+              <div className="mt-6 text-md text-center">
+                <p className="text-gray-500">
+                  By signing in, you agree to our{" "}
+                  <Link
+                    to="#TermsOfService"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    to="#PrivacyPolicy"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
+              </div>
+            </>
           )}
-
         </div>
       </div>
 

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import useApi from "../../components/hooks/useApi";
-import useSEO from "../../components/hooks/useSEO";
 import { ArrowLeft, Heart, House } from "lucide-react";
 import { AppContext } from "../../components/contexts/AppContext";
-import { fetchUserByToken } from "../../components/api/api";
+import useApi from "../../components/hooks/useApi";
+import useSEO from "../../components/hooks/useSEO";
 import Loading from "../../components/ui/loading/Loading";
+// import { fetchUserByToken } from "../../components/api/api";
+
 
 const ViewPost = () => {
   const navigate = useNavigate();
@@ -26,12 +27,13 @@ const ViewPost = () => {
         // console.log("Current User:", user);
 
         if (res?.data?.Likers?.some((liker) => liker.id === user?.id)) {
-          console.log("User has liked this post");
+          // console.log("User has liked this post");
           // console.log("User ID:", user.id, "Likers:", data?.Likers);
           setLiked(true);
         } else {
           // console.log("User ID:", user?.id, "Likers:", data?.data?.Likers);
-          console.log("User has not liked this post");
+          // console.log("User has not liked this post");
+          setLiked(false);
         }
         // console.log("Post Data:", data);
         setPostData(res?.data || null); // API response shape: { status, data }
@@ -50,10 +52,10 @@ const ViewPost = () => {
     image: postData?.coverImage,
   });
 
-  // Assuming `put` or `post` returns the updated post object from the server:
+
   const handleLike = async (postId) => {
     try {
-      if (liked) return; // Prevent multiple clicks, but rely on backend for final check
+      if (liked) return; 
 
       const res = await post(`/posts/${postId}/like`, {}, token);
 
@@ -67,14 +69,19 @@ const ViewPost = () => {
       setLiked(true);
     } catch (err) {
       // Handle the error (e.g., show a toast/notification)
-      console.error(err);
+      // console.error(err);
       throw new Error(err.message || "Error liking the post.");
     }
   };
 
-  if (loading) return <p className="text-gray-300"><Loading fullScreen spinner/></p>;
-  if (error) return <p className="text-red-500">Error loading post.</p>;
-  if (!postData) return <p className="text-gray-400">Post not found.</p>;
+  if (loading)
+    return (
+      <div className="text-gray-300">
+        <Loading fullScreen spinner />
+      </div>
+    );
+  if (error) return <div className="text-red-500">Error loading post.</div>;
+  if (!postData) return <div className="text-gray-400">Post not found.</div>;
 
   return (
     <main className=" mx-auto mt-6 md:mt-10">
@@ -111,7 +118,7 @@ const ViewPost = () => {
             alt={postData.title}
             className="absolute w-full  object-cover "
           />
-          <div className="absolute w-full bottom-0 left-0 bg-gradient-to-t from-black  to-transparent p-4">
+          <div className="absolute w-full bottom-0 left-0 bg-gradient-to-t from-black/60  to-transparent p-4 backdrop-blur-sm rounded">
             <h1 className="text-2xl md:text-3xl text-white/80 font-bold ">
               {postData.title}
             </h1>

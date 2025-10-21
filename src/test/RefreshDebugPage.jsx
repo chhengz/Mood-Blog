@@ -1,6 +1,6 @@
 import React from "react";
-import api from "../components/api/api_test";
-import { useState } from "react";
+// import api from "../components/api/api_test";
+// import { useState } from "react";
 import axios from "axios";
 
 export default function RefreshDebugPage() {
