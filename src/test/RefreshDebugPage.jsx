@@ -7,7 +7,7 @@ export default function RefreshDebugPage() {
 
   const handleTest = async () => {
     
-    const res = await axios.get('/api/v1/users/me/profile',{
+    const res = await axios.get('/api/v1/users/profile',{
       headers:{
         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
       }

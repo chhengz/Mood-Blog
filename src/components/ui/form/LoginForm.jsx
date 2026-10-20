@@ -14,7 +14,7 @@ const LoginForm = ({ formData, onChange, onSubmit, isLoading, error }) => {
           value={formData.email}
           onChange={onChange}
           placeholder="Your email"
-          className="w-full px-3 py-2 text-md text-gray-400 bg-zinc-900/50 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-1 focus:ring-gray-600/50 shadow-lg"
+          className="w-full px-3 py-2 text-md text-gray-400 bg-zinc-900/50 border border-(--border-color) rounded-xl focus:outline-none focus:ring-1 focus:ring-gray-600/50 shadow-lg"
         />
       </div>
 
@@ -27,7 +27,7 @@ const LoginForm = ({ formData, onChange, onSubmit, isLoading, error }) => {
           value={formData.password}
           onChange={onChange}
           placeholder="Your password"
-          className="w-full px-3 py-2 text-md text-gray-400 bg-zinc-900/50 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-1 focus:ring-gray-600/50 shadow-lg"
+          className="w-full px-3 py-2 text-md text-gray-400 bg-zinc-900/50 border border-(--border-color) rounded-xl focus:outline-none focus:ring-1 focus:ring-gray-600/50 shadow-lg"
         />
       </div>
 
@@ -35,7 +35,7 @@ const LoginForm = ({ formData, onChange, onSubmit, isLoading, error }) => {
 
       <button
         type="submit"
-        className="w-full mt-2 px-4 py-2 text-md font-bold text-[var(--text-black)] bg-white rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600/50 shadow-lg cursor-pointer hover:scale-102 transition"
+        className="w-full mt-2 px-4 py-2 text-md font-bold text-(--text-black) bg-white rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600/50 shadow-lg cursor-pointer hover:scale-102 transition"
         disabled={isLoading}
       >
         {isLoading ? (

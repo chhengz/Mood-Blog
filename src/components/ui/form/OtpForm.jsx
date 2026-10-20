@@ -59,13 +59,13 @@ const OtpForm = ({ onSendCode, onVerify, isLoading, error }) => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className='w-full px-3 py-2 text-md text-gray-400 bg-zinc-900/50 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-1 focus:ring-gray-600/50 shadow-lg'
+            className='w-full px-3 py-2 text-md text-gray-400 bg-zinc-900/50 border border-(--border-color) rounded-xl focus:outline-none focus:ring-1 focus:ring-gray-600/50 shadow-lg'
             required
           />
 
           <button
             type="submit"
-            className="w-full mt-2 px-4 py-2 text-md font-bold text-[var(--text-black)] bg-white rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600/50 shadow-lg cursor-pointer hover:scale-102 transition"
+            className="w-full mt-2 px-4 py-2 text-md font-bold text-(--text-black) bg-white rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600/50 shadow-lg cursor-pointer hover:scale-102 transition"
             disabled={isLoading}
           >
             {isLoading ? "Sending..." : "Send Code"}
@@ -91,7 +91,7 @@ const OtpForm = ({ onSendCode, onVerify, isLoading, error }) => {
 
           <button
             type="submit"
-            className="w-full mt-4 px-4 py-2 text-md font-bold text-[var(--text-black)] bg-white rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600/50 shadow-lg cursor-pointer hover:scale-102 transition"
+            className="w-full mt-4 px-4 py-2 text-md font-bold text-(--text-black) bg-white rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600/50 shadow-lg cursor-pointer hover:scale-102 transition"
             disabled={isLoading}
           >
             {isLoading ? "Verifying..." : "Verify Code"}

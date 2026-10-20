@@ -7,14 +7,8 @@ import { LoadingScreen } from "../../components/ui/loading/LoadingScreen";
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, isCheckingAuth } = useContext(AppContext);
 
-  if (isCheckingAuth) {
-    return <LoadingScreen />;
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
+  if (isCheckingAuth) return <LoadingScreen />;
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
   return children;
 };
 

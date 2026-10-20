@@ -64,7 +64,7 @@ export default api;
 // Example usage
 export const fetchUserByToken = async () => {
   try {
-    const response = await api.get("/users/me/profile");
+    const response = await api.get("/users/profile");
     return response.data;
   } catch (error) {
     console.error("API Error:", error.message);

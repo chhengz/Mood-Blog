@@ -17,11 +17,11 @@ const PostCard = ({ loading, posts, error }) => {
         posts.map((blog) => (
           <Link to={`/blog/${blog.slug}`} key={blog.id}>
             <li className="group flex items-start justify-between mb-4">
-              <h2 className=" text-md  md:text-lg  text-[var(--text-gray)] group-hover:text-gray-400">
+              <h2 className=" text-md  md:text-lg  text-(--text-gray) group-hover:text-gray-400">
                 {blog.title}
                 {/* <Link to={`/blog/${post.slug}`}>{post.title}</Link> */}
               </h2>
-              <span className="mt-1 text-md text-[var(--text-gray)] group-hover:text-gray-400 group-hover:underline">
+              <span className="mt-1 text-md text-(--text-gray) group-hover:text-gray-400 group-hover:underline">
                 {blog?.createdAt
                   ? new Date(blog.createdAt).toLocaleDateString()
                   : ""}

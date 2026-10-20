@@ -103,7 +103,7 @@ const Navbar = () => {
                   >
                     <NavLink
                       to={link.path}
-                      className={`text-lg md:text-xl font-medium  hover:text-[var(--text-color)]/80 transition-all duration-150 ease-in-out`}
+                      className={`text-lg md:text-xl font-medium  hover:text-(--text-color)/80 transition-all duration-150 ease-in-out`}
                     >
                       {link.label}
                     </NavLink>
@@ -120,7 +120,7 @@ const Navbar = () => {
                   >
                     <button
                       onClick={() => navigate("/login")}
-                      className={`  cursor-pointer block px-3  py-1 text-md font-medium  text-[var(--text-color)] bg-blue-400 rounded-full  hover:scale-105 transition-transform duration-200 ease-in-out `}
+                      className={`  cursor-pointer block px-3  py-1 text-md font-medium  text-(--text-color) bg-blue-400 rounded-full  hover:scale-105 transition-transform duration-200 ease-in-out `}
                     >
                       Login
                     </button>
@@ -178,7 +178,7 @@ const Navbar = () => {
                     <div className="mr-2 -mt-1 transition-all duration-300 ease-in-out">
                       {link.icon}
                     </div>
-                    <span className="active__navlink text-2xl font-bold  group-hover:text-[var(--text-color)]  transition-all duration-200 ease-in-out">
+                    <span className="active__navlink text-2xl font-bold  group-hover:text-(--text-color)  transition-all duration-200 ease-in-out">
                       {link.label}
                     </span>
                   </NavLink>

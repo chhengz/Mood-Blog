@@ -11,7 +11,7 @@ const ToggleThemeButton = ({isScrolled = false}) => {
 
     return (
   
-            <button
+      <button
         onClick={handleToggle}
         className={`w-10 h-10 px-2 py-2  bg-zinc-400/50  ${isScrolled ? '' : ' '} border border-gray-600 backdrop-blur-lg rounded-full cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out`}
       >

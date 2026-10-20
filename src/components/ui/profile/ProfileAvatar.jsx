@@ -47,7 +47,7 @@ const ProfileAvatar = ({isScrolled = false}) => {
       <div
         onClick={() => setIsOpen(!isOpen)}
         title={user?.username || ''}
-        className={`rounded-full w-10 h-10 overflow-hidden  ${isScrolled ? '' :  '' } border-1 border-gray-600 cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
+        className={`rounded-full w-10 h-10 overflow-hidden  ${isScrolled ? '' :  '' } border border-gray-600 cursor-pointer  hover:scale-105 transition-transform duration-200 ease-in-out`}
       >
         {/* <img
           src={user. AVATAR_URL}
@@ -69,12 +69,12 @@ const ProfileAvatar = ({isScrolled = false}) => {
         className="relative space-y-1 transition-all ease-linear duration-300"
       >
         {isOpen && (
-          <ul className="absolute space-y-1 z-10 right-0 mt-2 w-48 p-2 dark:bg-zinc-800 border  border-[var(--border-color)]/90 overflow-hidden rounded-xl shadow-lg ">
+          <ul className="absolute space-y-1 z-10 right-0 mt-2 w-48 p-2 dark:bg-zinc-800 border  border-(--border-color)/90 overflow-hidden rounded-xl shadow-lg ">
             {links.map((link) => (
-              <li key={link.label} className="hover:bg-[var(--border-color)]/60 rounded-md transition-all duration-150">
+              <li key={link.label} className="hover:bg-(--border-color)/60 rounded-md transition-all duration-150">
                 <Link
                   to={link.path}
-                  className="group flex group items-center justify-start w-full px-2 py-1 font-bold dark:text-[var(--text-gray)] dark:hover:text-white  transition-all duration-150 rounded-lg"
+                  className="group flex group items-center justify-start w-full px-2 py-1 font-bold dark:text-(--text-gray) dark:hover:text-white  transition-all duration-150 rounded-lg"
                 >
                   {/* Icon */}
                   <div className="mr-2 w-5 h-5  transition-all duration-150 ease-in-out ">
@@ -87,10 +87,10 @@ const ProfileAvatar = ({isScrolled = false}) => {
               </li>
             ))}
 
-            <li className="hover:bg-[var(--border-color)]/60 rounded-md transition-all duration-150">
+            <li className="hover:bg-(--border-color)/60 rounded-md transition-all duration-150">
               <button
                 onClick={handleLogout}
-                className="group flex items-center justify-start w-full px-2 py-1 font-bold dark:text-[var(--text-gray)] dark:hover:text-red-400 rounded-lg transition-all duration-150 cursor-pointer"
+                className="group flex items-center justify-start w-full px-2 py-1 font-bold dark:text-(--text-gray) dark:hover:text-red-400 rounded-lg transition-all duration-150 cursor-pointer"
               >
                 {/* Icon */}
                 <div className="mr-2 w-5 h-5  transition-all duration-150 ease-in-out ">
